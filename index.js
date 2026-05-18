@@ -8,14 +8,12 @@ const client = new Client({
         
        headless: true,
         // On indique les deux chemins standards où Linux installe Chrome de base
-        executablePath: process.platform === 'win32' 
-            ? null 
-            : '/usr/bin/google-chrome' || '/usr/bin/chromium-browser',
+       executablePath: '/usr/bin/google-chrome-stable',
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
-            '--disable-gpu'
+            '--disable-gpu',
         ]
     }
 });
