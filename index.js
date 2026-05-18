@@ -6,7 +6,11 @@ const client = new Client({
     puppeteer: {
         headless: true,
         
-        executablePath: '/opt/render/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome',
+       headless: true,
+        // On indique les deux chemins standards où Linux installe Chrome de base
+        executablePath: process.platform === 'win32' 
+            ? null 
+            : '/usr/bin/google-chrome' || '/usr/bin/chromium-browser',
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
