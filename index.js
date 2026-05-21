@@ -5,15 +5,14 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         headless: true,
-        
-       headless: true,
-        // On indique les deux chemins standards où Linux installe Chrome de base
-       executablePath: '/usr/bin/google-chrome-stable',
+        executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium',
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-gpu',
+            '--disable-dev-shm-usage', // Indispensable pour économiser la RAM sur Railway
+            '--disable-gpu',           // Désactive la carte graphique virtuelle
+            '--no-zygote',             // Évite les processus Chrome enfants inutiles
+            '--single-process'         // Force Chrome à utiliser un seul thread pour économiser la RAM
         ]
     }
 });
@@ -33,7 +32,7 @@ client.on('qr', (qr) => {
 });
 
 client.on('ready', () => {
-    console.log('Bot Agence CORRIGÉ et prêt !');
+    console.log('Bot Agence prêt !');  
 });
 
 // ÉCOUTE DES MESSAGES REÇUS ET ENVOYÉS
