@@ -1,3 +1,4 @@
-2026/05/18-18:43:38.419 126c Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db\metadata/MANIFEST-000001
-2026/05/18-18:43:38.421 126c Recovering log #3
-2026/05/18-18:43:38.421 126c Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db\metadata/000003.log 
+2026/05/21-22:47:13.975 28f0 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db\metadata since it was missing.
+2026/05/21-22:47:15.559 28f0 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db\metadata/MANIFEST-000001
+2026/05/21-22:47:15.560 28f0 Recovering log #3
+2026/05/21-22:47:15.589 28f0 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db\metadata/000003.log 

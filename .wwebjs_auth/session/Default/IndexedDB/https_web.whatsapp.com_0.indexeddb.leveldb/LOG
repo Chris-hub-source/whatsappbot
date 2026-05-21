@@ -1,40 +1,7 @@
-2026/05/18-18:52:22.317 126c Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb since it was missing.
-2026/05/18-18:52:23.347 126c Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2026/05/18-18:52:23.349 126c Recovering log #1632
-2026/05/18-18:52:23.349 126c Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/001632.log 
-2026/05/18-18:52:23.350 126c Delete type=2 #1408
-2026/05/18-18:52:23.350 126c Delete type=2 #1413
-2026/05/18-18:52:23.350 126c Delete type=2 #1414
-2026/05/18-18:52:23.350 126c Delete type=2 #1454
-2026/05/18-18:52:23.370 126c Delete type=2 #1517
-2026/05/18-18:52:23.370 126c Delete type=2 #1518
-2026/05/18-18:52:23.370 126c Delete type=2 #1520
-2026/05/18-18:52:23.370 126c Delete type=2 #1521
-2026/05/18-18:52:23.370 126c Delete type=2 #1552
-2026/05/18-18:52:23.370 126c Delete type=2 #1553
-2026/05/18-18:52:23.370 126c Delete type=2 #1555
-2026/05/18-18:52:23.370 126c Delete type=2 #1558
-2026/05/18-18:52:23.371 126c Delete type=2 #1559
-2026/05/18-18:52:23.371 126c Delete type=2 #1560
-2026/05/18-18:52:23.371 126c Delete type=2 #1561
-2026/05/18-18:52:23.371 126c Delete type=2 #1562
-2026/05/18-18:52:23.371 126c Delete type=2 #1563
-2026/05/18-18:52:23.371 126c Delete type=2 #1564
-2026/05/18-18:52:23.371 126c Delete type=2 #1592
-2026/05/18-18:52:23.371 126c Delete type=2 #1611
-2026/05/18-18:52:23.371 126c Delete type=2 #1612
-2026/05/18-18:52:23.371 126c Delete type=2 #1614
-2026/05/18-18:52:23.371 126c Delete type=2 #1615
-2026/05/18-18:52:23.371 126c Delete type=2 #1619
-2026/05/18-18:52:23.371 126c Delete type=2 #1620
-2026/05/18-18:52:23.371 126c Delete type=2 #1621
-2026/05/18-18:52:23.371 126c Delete type=2 #1623
-2026/05/18-18:52:23.371 126c Delete type=2 #1624
-2026/05/18-18:52:23.371 126c Delete type=2 #1625
-2026/05/18-18:52:23.371 126c Delete type=2 #1627
-2026/05/18-18:52:23.372 126c Delete type=2 #1629
-2026/05/18-18:52:23.372 126c Delete type=2 #1630
-2026/05/18-18:52:23.372 126c Delete type=2 #1631
-2026/05/18-18:52:23.372 126c Delete type=2 #1633
-2026/05/18-18:52:23.372 126c Delete type=2 #1634
-2026/05/18-18:52:23.372 126c Delete type=2 #1635
+2026/05/21-22:47:42.557 325c Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/21-22:47:42.599 325c Recovering log #1632
+2026/05/21-22:47:42.663 325c Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/001632.log 
+2026/05/21-22:47:45.057 325c Level-0 table #1634: started
+2026/05/21-22:47:45.206 325c Level-0 table #1634: 7855 bytes OK
+2026/05/21-22:47:45.284 325c Delete type=0 #1632
+2026/05/21-22:47:45.285 32f8 Manual compaction at level-0 from '\x00\x07\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x08\x00\x00\x00' @ 0 : 0; will stop at (end)

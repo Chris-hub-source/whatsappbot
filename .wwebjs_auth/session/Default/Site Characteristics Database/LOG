@@ -1,3 +1,4 @@
-2026/05/18-18:43:35.976 3228 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Site Characteristics Database/MANIFEST-000001
-2026/05/18-18:43:36.142 3228 Recovering log #3
-2026/05/18-18:43:36.143 3228 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Site Characteristics Database/000003.log 
+2026/05/21-22:47:11.075 2e38 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Site Characteristics Database since it was missing.
+2026/05/21-22:47:12.186 2e38 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Site Characteristics Database/MANIFEST-000001
+2026/05/21-22:47:12.187 2e38 Recovering log #3
+2026/05/21-22:47:12.342 2e38 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Site Characteristics Database/000003.log 
