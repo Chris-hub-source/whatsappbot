@@ -1,5 +1,8 @@
-2026/05/21-22:47:11.061 2338 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb since it was missing.
-2026/05/21-22:47:12.537 2338 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2026/05/21-22:47:12.589 2338 Recovering log #5
-2026/05/21-22:47:12.743 2338 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb/000005.log 
-2026/05/21-22:47:12.799 2338 Delete type=2 #6
+2026/05/22-12:23:19.743 27c4 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb since it was missing.
+2026/05/22-12:23:20.416 27c4 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2026/05/22-12:23:20.423 27c4 Recovering log #6
+2026/05/22-12:23:20.431 27c4 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Local Storage\leveldb/000006.log 
+2026/05/22-12:23:20.436 27c4 Delete type=2 #7
+2026/05/22-12:31:18.880 27c4 Level-0 table #8: started
+2026/05/22-12:31:19.345 27c4 Level-0 table #8: 19064 bytes OK
+2026/05/22-12:31:20.565 27c4 Delete type=0 #6

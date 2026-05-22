@@ -1,4 +1,4 @@
-2026/05/21-22:47:15.735 28f0 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db since it was missing.
-2026/05/21-22:47:16.265 28f0 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001
-2026/05/21-22:47:16.266 28f0 Recovering log #3
-2026/05/21-22:47:16.663 28f0 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db/000003.log 
+2026/05/22-12:23:19.547 2f00 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db since it was missing.
+2026/05/22-12:23:20.022 2f00 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001
+2026/05/22-12:23:20.023 2f00 Recovering log #3
+2026/05/22-12:23:20.024 2f00 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\shared_proto_db/000003.log 

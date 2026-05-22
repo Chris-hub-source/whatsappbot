@@ -2,6 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrImage = require('qr-image');
 const http = require('http');
 
+// Détection automatique de l'environnement (Windows ou Linux Cloud)
 const estWindows = process.platform === 'win32';
 
 const client = new Client({
@@ -13,10 +14,12 @@ const client = new Client({
         args: estWindows ? [] : [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-gpu',
+            '--disable-dev-shm-usage', // Évite d'utiliser /dev/shm qui sature vite la RAM sur Railway
+            '--disable-gpu',           // Pas de rendu graphique inutile
             '--no-zygote',
-            '--single-process'
+            '--single-process',        // Évite la multiplication des sous-processus Chrome
+            '--disable-extensions',    // Désactive les extensions pour léger Chrome
+            '--no-first-run'           // Saute les configurations initiales de Chrome
         ]
     }
 });
@@ -44,14 +47,20 @@ http.createServer((req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end('<h1>Le QR Code n\'est pas encore généré ou le bot est déjà connecté avec succès.</h1>');
     }
-}).listen(port, () => {
+}).listen(port, '0.0.0.0', () => {
     console.log(`Serveur web d'affichage QR Code démarré sur le port ${port}`);
 });
 
 // Événement de réception du QR Code
 client.on('qr', (qr) => {
     dernierQR = qr; // On sauvegarde le token du QR code
-    console.log('--- NOUVEAU QR CODE DISPONIBLE ! Ouvrez le lien généré par Railway pour le scanner ---');
+    if (estWindows) {
+        console.log('--- NOUVEAU QR CODE DISPONIBLE ! ---');
+        console.log('👉 Ouvrez ce lien sur votre PC pour scanner : http://localhost:3000');
+    } else {
+        console.log('--- NOUVEAU QR CODE DISPONIBLE ! ---');
+        console.log('👉 Ouvrez le lien généré par Railway pour le scanner.');
+    }
 });
 
 client.on('ready', () => {
@@ -62,16 +71,20 @@ client.on('ready', () => {
 // ÉCOUTE DES MESSAGES REÇUS ET ENVOYÉS
 client.on('message_create', async (msg) => {
     try {
-        if (msg.from === 'status@broadcast' || msg.to === 'status@broadcast') return;
+        if (!msg || msg.from === 'status@broadcast' || msg.to === 'status@broadcast') return;
 
-        const chat = await msg.getChat();
-        if (chat.isGroup) return;
+        // Sécurisation de la récupération du chat contre la destruction de contexte
+        const chat = await msg.getChat().catch(err => {
+            console.error("Impossible de récupérer le chat (contexte détruit temporairement):", err.message);
+            return null;
+        });
+        if (!chat || chat.isGroup) return;
 
-        const text = msg.body.trim().toLowerCase();
+        const text = msg.body ? msg.body.trim().toLowerCase() : '';
 
         // 1. GESTION DES COMMANDES DE DÉBRAYAGE (Par la secrétaire ou l'agence)
         const estUnMessageHumainDeLAgence = msg.fromMe 
-            ? (msg.hasMedia === false && !text.includes("bienvenue chez god willing")) 
+            ? (msg.hasMedia === false && !text.includes("bienvenue chez god willing") && !text.includes("système : la secrétaire")) 
             : (msg.from.includes(NUMERO_SECRETAIRE) && NUMERO_SECRETAIRE !== '');
 
         if (estUnMessageHumainDeLAgence) {
@@ -80,16 +93,18 @@ client.on('message_create', async (msg) => {
             // Commande pour réactiver le bot
             if (text === '*fin*') {
                 discussionsActives.delete(clientId);
-                etapesClients.delete(clientId);
-                await client.sendMessage(clientId, `🔄 *Système* : Le bot est réactivé.`);
-                console.log(`Bot réactivé pour le client ${clientId}`);
+                etapesClients.delete(clientId); // Supprime l'ancienne étape pour repartir à zéro
+    
+                // On prévient juste le client sans envoyer le menu directement
+                await client.sendMessage(clientId, `🔄 *Système* : La secrétaire a terminé la discussion. Le bot est de nouveau à votre écoute.`);
+                console.log(`Bot réactivé en arrière-plan pour le client ${clientId} (En attente de son prochain message)`);
                 return;
             }
 
-            // Si l'humain écrit, on coupe le bot automatiquement pour ce client
+            // Si l'humain écrit un message normal, on coupe le bot automatiquement pour ce client
             if (!discussionsActives.has(clientId)) {
                 discussionsActives.add(clientId);
-                console.log(`La secrétaire a pris la main manuellement sur le client ${clientId}. Le bot s'efface.`);
+                console.log(`La secrétaire a pris la main sur le client ${clientId}. Le bot s'efface.`);
             }
             return;
         }
@@ -129,9 +144,9 @@ client.on('message_create', async (msg) => {
                         // --- SERVICE DEMANDE DE VISA ---
                         if (session.service === 'visa') {
                             if (session.etape === 1) {
-                                await msg.reply(`Parfait ! Pour cette destination, voici les documents à fournir pour l'instant :\n- 📑 Passeport scanné (en couleur et bien lisible)\n- 📸 Photo passeport\n\nNotre secrétaire vient de recevoir votre demande et va prendre le relais. Vous pouvez déjà envoyer vos fichiers ici.`);
-                                discussionsActives.add(clientId);
-                                etapesClients.delete(clientId);
+                                await msg.reply(`Parfait ! Pour cette destination, voici les documents à fournir pour l'instant :\n- 📑 Passeport scanné (en couleur et bien lisible)\n- 📸 Photo passeport\n\nVous pouvez déjà envoyer vos fichiers ici.`);
+                                discussionsActives.add(clientId); 
+                                etapesClients.delete(clientId); 
                             }
                             return;
                         }
@@ -139,7 +154,7 @@ client.on('message_create', async (msg) => {
                         // --- SERVICE CARTE DE SÉJOUR ---
                         if (session.service === 'sejour') {
                             if (session.etape === 1) {
-                                await msg.reply(`Merci pour cette précision. Veuillez maintenant nous fournir :\n- 📸 Une photo passeport\n- 📑 Un scan bien lisible de votre passeport\n\nVotre demande est enregistrée. La secrétaire prend le relais pour analyser vos pièces.`);
+                                await msg.reply(`Merci pour cette précision. Veuillez maintenant nous fournir :\n- 📸 Une photo passeport\n- 📑 Un scan bien lisible de votre passeport\n\nVotre demande est enregistrée.`);
                                 discussionsActives.add(clientId);
                                 etapesClients.delete(clientId);
                             }
@@ -152,7 +167,7 @@ client.on('message_create', async (msg) => {
                                 await msg.reply(`🔑 Très bien. Quelles sont vos dates prévues pour le séjour (Date d'arrivée et date de départ) ?`);
                                 etapesClients.set(clientId, { service: 'hotel', etape: 2 });
                             } else if (session.etape === 2) {
-                                await msg.reply(`C'est noté ! Nous recherchons les meilleures options d'hôtels disponibles pour vos dates. La secrétaire prend le relais pour vous faire des propositions.`);
+                                await msg.reply(`C'est noté ! Nous recherchons les meilleures options d'hôtels disponibles pour vos dates.`);
                                 discussionsActives.add(clientId);
                                 etapesClients.delete(clientId);
                             }
@@ -160,7 +175,7 @@ client.on('message_create', async (msg) => {
                         }
 
                     } else {
-                        // --- CHOIX INITIAL DU MENU PRINCIPAL ---
+                        // --- CHOIX INITIAL OU CLIENT REVENU APRÈS UN *FIN* ---
                         switch (text) {
                             case '1':
                                 await msg.reply(`🎫 *ACHAT DE BILLETS D'AVION*\n\nQuelle est votre destination de voyage ?`);
@@ -179,6 +194,7 @@ client.on('message_create', async (msg) => {
                                 etapesClients.set(clientId, { service: 'hotel', etape: 1 });
                                 break;
                             default:
+                                // Quand le client réécrit après le *fin*, il reçoit le menu proprement
                                 await msg.reply(mainMenu);
                                 break;
                         }

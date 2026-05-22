@@ -1,4 +1,4 @@
-2026/05/21-22:47:15.362 2338 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage since it was missing.
-2026/05/21-22:47:15.998 2338 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
-2026/05/21-22:47:16.038 2338 Recovering log #3
-2026/05/21-22:47:16.171 2338 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage/000003.log 
+2026/05/22-12:23:19.719 2194 Creating DB C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage since it was missing.
+2026/05/22-12:23:20.362 2194 Reusing MANIFEST C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
+2026/05/22-12:23:20.364 2194 Recovering log #3
+2026/05/22-12:23:20.368 2194 Reusing old log C:\Users\REY\whatsapp-auto-bot\.wwebjs_auth\session\Default\Session Storage/000003.log 
